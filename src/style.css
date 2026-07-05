@@ -1,0 +1,863 @@
+/* ==========================================================================
+   1. VARIABLES Y CONFIGURACIÓN GLOBAL
+   ========================================================================== */
+:root {
+  --color-isabial-dark: #0f2027;
+  --color-simia-primary: #0d9488;
+  --color-simia-secondary: #203a43;
+  --color-fondo: #f8fafc;
+  --color-texto: #334155;
+  --color-texto-claro: #94a3b8;
+  --color-blanco: #ffffff;
+  --fuente-principal: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* 1. Hace que todos los saltos de enlaces sean progresivos y suaves */
+  scroll-behavior: smooth; 
+  
+  /* 2. Le dice al navegador que deje un margen superior al saltar, 
+        compensando la altura de tu barra de navegación */
+  scroll-padding-top: 60px; 
+}
+
+body {
+  font-family: var(--fuente-principal);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. CLASES DE UTILIDAD Y COMPONENTES GENÉRICOS
+   ========================================================================== */
+.titulo-seccion {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 4rem;
+  color: var(--color-isabial-dark);
+}
+
+.titulo-seccion.blanco {
+  color: var(--color-blanco);
+  margin-bottom: 1rem;
+}
+
+.subtitulo-blanco {
+  text-align: center;
+  color: #cbd5e1;
+  margin-bottom: 4rem;
+}
+
+.subtitulo-centrado {
+  text-align: center;
+  color: #64748b;
+  font-size: 1.2rem;
+  margin-top: -3rem;
+  margin-bottom: 4rem;
+}
+
+.divisor {
+  border: 0;
+  height: 1px;
+  background: #cbd5e1;
+  margin: 1.5rem 0;
+}
+
+/* --- Botones --- */
+.btn-primario {
+  background-color: var(--color-simia-primary);
+  color: var(--color-blanco);
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: transform 0.2s;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primario:hover { transform: scale(1.05); }
+
+/* --- Botones Oscuros Iguales (Grado y Máster) --- */
+.btn-secundario,
+.btn-primario-oscuro {
+  display: block;
+  width: 100%;
+  box-sizing: border-box; /* Asegura que ambos midan exactamente lo mismo de ancho */
+  text-align: center;
+  background-color: var(--color-isabial-dark);
+  color: var(--color-blanco);
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  
+  /* Forzamos tipografía idéntica para <a> y <button> */
+  font-family: var(--fuente-principal); 
+  font-size: 1rem; 
+  font-weight: bold;
+  text-decoration: none;
+  
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-secundario:hover,
+.btn-primario-oscuro:hover {
+  background-color: var(--color-simia-primary);
+}
+
+.btn-full {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+/* ==========================================================================
+   3. NAVEGACIÓN Y FOOTER
+   ========================================================================== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4rem;
+  background-color: var(--color-isabial-dark);
+  color: var(--color-blanco);
+  
+  /* Aquí está la fusión clave: */
+  position: sticky; 
+  top: 0;
+  z-index: 100; 
+}
+
+/* --- Contenedor de Logos --- */
+.brand-logos {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Espacio entre los logos */
+  text-decoration: none;
+}
+
+/* Todos los logos al mismo tamaño y sin animaciones */
+.logo-principal,
+.logo-secundario {
+  height: 42px; /* Altura estándar e idéntica para ISABIAL, SimIA y SIMIATech */
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-secundario {
+  height: 55px;
+}
+
+/* Línea separadora */
+.separador-logos {
+  color: #475569; 
+  font-size: 2rem;
+  font-weight: 300;
+  margin: 0 0.5rem;
+  user-select: none; 
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--color-blanco);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(--color-simia-primary); }
+
+.btn-contacto {
+  background-color: var(--color-simia-primary);
+  padding: 0.5rem 1.5rem;
+  border-radius: 6px;
+}
+
+.btn-contacto:hover { background-color: #0f766e; color: var(--color-blanco) !important; }
+
+/* Redes Sociales Centradas */
+.nav-socials {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-socials a {
+  color: var(--color-blanco);
+  opacity: 0.45; /* Transparencia base */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.nav-socials a:hover {
+  opacity: 1; /* Coge color sólido al pasar el ratón */
+  transform: scale(1.15); /* Crece un poquito */
+}
+
+footer {
+  background-color: #020617;
+  color: #64748b;
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   4. SECCIONES PRINCIPALES
+   ========================================================================== */
+
+/* --- Hero --- */
+.hero {
+  background: linear-gradient(135deg, var(--color-isabial-dark), var(--color-simia-secondary), #2c5364);
+  color: var(--color-blanco);
+  padding: 9rem 2rem 7rem 2rem; /* Un poco más de aire arriba por la navbar sticky */
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-content h1 {
+  font-size: 3.6rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.hero-subtitulo {
+  font-size: 1.3rem;
+  margin-bottom: 3rem;
+  color: #cbd5e1;
+  font-weight: 300;
+}
+
+/* Contenedor de las dos vías de estudiantes */
+.hero-perfiles-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.pildora-perfil {
+  flex: 1;
+  max-width: 400px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 1.5rem;
+  border-radius: 12px;
+  backdrop-filter: blur(8px); /* Efecto cristal esmerilado muy moderno */
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.categoria-badge {
+  align-self: flex-start;
+  background-color: var(--color-simia-primary);
+  color: var(--color-blanco);
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.pildora-perfil p {
+  font-size: 0.95rem;
+  color: #e2e8f0;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ==========================================================================
+   BANNER APP SIMIA SUITE
+   ========================================================================== */
+.banner-app {
+  background-color: var(--color-blanco);
+  border-bottom: 1px solid #e2e8f0;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 10;
+}
+
+.banner-app-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.app-texto h3 {
+  font-size: 1.5rem;
+  color: var(--color-isabial-dark);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.badge-proximamente {
+  font-size: 0.75rem;
+  background-color: #f59e0b; /* Naranja llamativo */
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.app-texto p {
+  color: #475569;
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.app-botones {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.btn-tienda {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: var(--color-isabial-dark);
+  color: white;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+  text-align: left;
+}
+
+.btn-tienda:hover {
+  background-color: var(--color-simia-primary);
+  transform: translateY(-3px);
+}
+
+.textos-tienda {
+  display: flex;
+  flex-direction: column;
+}
+
+.textos-tienda span {
+  font-size: 0.65rem;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
+}
+
+.textos-tienda strong {
+  font-size: 1.1rem;
+  line-height: 1.1;
+}
+
+/* Notificación Flotante (Toast) */
+.toast-notificacion {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: var(--color-isabial-dark);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: bold;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  z-index: 10000;
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
+}
+
+.toast-notificacion.mostrar {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   AJUSTES LOGOS BANNER APP
+   ========================================================================== */
+
+/* Estilo para el logo de la App en el banner */
+.logo-suite-icon {
+  width: 45px;          /* Ajusta al tamaño que mejor quede con tu H3 */
+  height: 45px;
+  border-radius: 12px;  /* Esquinas redondeadas estilo iOS/Android */
+  
+  /* Aquí está la magia de la sombra */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25), 
+              0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  /* Transición por si en el futuro quieres que reaccione al pasar el ratón */
+  transition: transform 0.2s ease;
+  vertical-align: middle;
+}
+
+/* Opcional: si quieres que al pasar el ratón se note que es el icono de la app */
+.logo-suite-icon:hover {
+  transform: scale(1.05);
+}
+
+/* Logos de las tiendas (App Store / Google Play) */
+.logo-app-store, 
+.logo-google-play {
+  width: 28px;          /* Tamaño estandarizado */
+  height: 28px;
+  object-fit: contain;  /* Evita que se deformen */
+}
+
+/* Ajuste del botón para que el texto y el logo queden alineados */
+.btn-tienda {
+  display: flex;
+  align-items: center;
+  gap: 10px;            /* Espacio entre el logo y el texto */
+  background-color: var(--color-simia-secondary);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.textos-tienda strong {
+  font-size: 0.95rem;   /* Ajuste de tamaño de fuente para que no sea muy grande */
+  font-weight: 600;
+}
+
+/* --- Qué Hacemos (Tarjetas con Imagen de Fondo) --- */
+.que-hacemos {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.grid-que-hacemos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.tarjeta-hacer {
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-blanco);
+  
+  /* Ajustes para la imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  
+
+  /* Sombra para mejorar contraste sin oscurecer tanto el fondo */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.411);
+}
+
+.tarjeta-hacer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+.tarjeta-hacer h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--color-blanco); /* Forzamos blanco sobre el fondo oscuro */
+  border-bottom: 2px solid var(--color-simia-primary);
+  padding-bottom: 0.8rem;
+  z-index: 2; /* Para que el texto quede por encima del fondo */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0);
+}
+
+.tarjeta-hacer p {
+  font-size: 1.05rem;
+  color: #f1f5f9; /* Un gris muy clarito (casi blanco) para el texto secundario */
+  line-height: 1.6;
+  flex-grow: 1;
+  z-index: 2;
+}
+
+/* =========================================================
+   IMÁGENES DE FONDO PREPARADAS PARA ISABIAL 
+   (Incluyen un filtro oscuro degradado para asegurar la lectura)
+   ========================================================= */
+
+.bg-app {
+  background-image: linear-gradient(rgba(32, 56, 66, 0.6), rgba(32, 56, 66, 0.6)), url('../img/apps.jpeg');
+}
+
+.bg-3d {
+  background-image: linear-gradient(rgba(32, 56, 66, 0.6), rgba(32, 56, 66, 0.6)), url('../img/simuladores-electronica-3D.jpeg');
+}
+
+.bg-impacto {
+  background-image: linear-gradient(rgba(32, 56, 66, 0.6), rgba(32, 56, 66, 0.6)), url('../img/impacto-clinico.jpeg');
+}
+
+/* --- Galería de Proyectos de Alumnos --- */
+.proyectos-seccion {
+  background-color: var(--color-blanco);
+  padding: 6rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid-galeria-proyectos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Cambiado de 3 a 2 columnas iguales */
+  gap: 3rem; /* Aumentamos un pelín el espacio entre ellas para que respire mejor */
+}
+
+.tarjeta-galeria {
+  background-color: var(--color-fondo);
+  border-radius: 12px;
+  overflow: hidden; /* Esto asegura que la imagen respete las esquinas redondeadas */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-galeria:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px -3px rgba(13, 148, 136, 0.15); /* Sombra con un sutil tono verde/teal */
+}
+
+.img-galeria {
+  height: 280px; /* Subimos la altura de 240px a 280px para que la foto sea más imponente */
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-blanco);
+  font-weight: bold;
+  font-size: 1.1rem;
+  background-size: cover;
+  background-position: center;
+}
+
+.pie-galeria {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  background: var(--color-blanco);
+  flex-grow: 1; /* Alinea las bases de las tarjetas aunque el título sea largo */
+}
+
+.pie-galeria h3 {
+  font-size: 1.15rem;
+  color: var(--color-isabial-dark);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.modalidad-proyecto {
+  font-size: 0.9rem;
+  color: var(--color-simia-primary); /* Destaca la modalidad con el color corporativo */
+  font-weight: 600;
+  display: block;
+}
+
+.autor-proyecto {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-style: italic; /* En cursiva y un poco más pequeña */
+  display: block;
+}
+
+/* =========================================================
+   RUTAS DE IMÁGENES PREPARADAS PARA LA CARPETA img/
+   ========================================================= */
+.bg-proj-neonato { background-image: url('../img/sim-neonatal.jpg'); background-color: #3b82f6; }
+.bg-proj-desa    { background-image: url('../img/DESA.jpg'); background-color: #f43f5e; }
+.bg-proj-vr      { background-image: url('../img/cirugia-vr.jpg'); background-color: #8b5cf6; }
+.bg-proj-rcp     { background-image: url('../img/sim-rcp.jpg'); background-color: #ec4899; }
+.bg-proj-eco     { background-image: url('../img/ecoapp.jpg'); background-color: #10b981; }
+.bg-proj-ia      { background-image: url('../img/ia-rcp.jpg'); background-color: #6366f1; }
+
+/* ==========================================================================
+   5. SECCIÓN PRÁCTICAS Y FORMULARIOS
+   ========================================================================== */
+.practicas-seccion {
+  background-color: var(--color-isabial-dark);
+  padding: 6rem 2rem;
+}
+.contenedor-practicas { max-width: 1000px; margin: 0 auto; }
+.grid-perfiles { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+.tarjeta-perfil {
+  background: var(--color-blanco);
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
+}
+.tarjeta-perfil h3 { color: var(--color-simia-primary); font-size: 1.5rem; margin-bottom: 1rem; }
+
+/* Alertas UI */
+.alerta-entrevista {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-left: 4px solid #fbbf24;
+  color: var(--color-blanco);
+  padding: 1rem 1.5rem;
+  margin-bottom: 3rem;
+  border-radius: 4px;
+}
+.alerta-info {
+  background-color: #e0f2fe;
+  border-left: 4px solid #0284c7;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: #0c4a6e;
+  border-radius: 0 8px 8px 0;
+}
+.alerta-master {
+  background-color: #f1f5f9;
+  border-left: 4px solid var(--color-simia-primary);
+  padding: 1rem;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  color: #475569;
+}
+.aviso-cv {
+  font-size: 0.85rem;
+  color: #ef4444;
+  margin-top: 0.5rem;
+  text-align: center;
+  background: #fef2f2;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+/* Formulario */
+.explicacion-boton {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  color: #475569;
+  text-align: center;
+  background-color: var(--color-fondo);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px dashed #cbd5e1;
+}
+
+.formulario-grado { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
+.formulario-grado label { font-weight: bold; font-size: 0.9rem; }
+.formulario-grado input, .formulario-grado textarea, .formulario-grado select {
+  padding: 0.8rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  font-family: inherit;
+  width: 100%;
+}
+input[type="file"] { background-color: var(--color-fondo); cursor: pointer; }
+
+.subtexto-label {
+  color: rgb(51, 65, 85);          /* Gris claro y elegante */
+  font-weight: normal;     /* Le quitamos la negrita que hereda del label */
+  display: inline-block;   /* Ayuda a que el espaciado con el <br> quede perfecto */
+  margin-top: 0.2rem;
+}
+
+/* Opciones Trimestre Checkbox */
+.opciones-trimestre { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1rem; }
+.opciones-trimestre label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: normal;
+  cursor: pointer;
+  background: var(--color-fondo);
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  transition: background 0.2s;
+}
+.opciones-trimestre label:hover { background: #e2e8f0; }
+
+.chk-trimestre {
+  width: auto !important;
+  height: auto !important;
+  cursor: pointer;
+  transform: scale(1.1);
+  margin-right: 0.5rem;
+}
+
+.texto-exito { color: var(--color-simia-primary); font-weight: bold; margin-bottom: 1rem; }
+
+/* Contacto */
+.contacto { padding: 6rem 2rem; text-align: center; }
+.contenedor-contacto p { font-size: 1.2rem; margin-bottom: 2rem; }
+
+/* ==========================================================================
+   VENTANAS MODALES (POP-UPS)
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 32, 39, 0.85); /* Fondo oscuro corporativo */
+  z-index: 9999; /* Por encima de todo */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  backdrop-filter: blur(4px); /* Difumina lo que hay detrás */
+}
+
+.modal-overlay.activo {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background-color: var(--color-blanco);
+  width: 90%;
+  max-width: 700px;
+  max-height: 90vh; /* Para que no se salga de la pantalla si hay mucho texto */
+  overflow-y: auto; /* Scroll interno si es necesario */
+  border-radius: 12px;
+  padding: 3rem 2.5rem;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  transform: translateY(-30px);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.activo .modal-content {
+  transform: translateY(0);
+}
+
+.btn-cerrar {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-cerrar:hover {
+  color: #ef4444; /* Rojo al pasar el ratón */
+}
+
+/* Scrollbar personalizada para el modal */
+.modal-content::-webkit-scrollbar { width: 8px; }
+.modal-content::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+.modal-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+.modal-content::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN (MÓVILES Y TABLETS)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Navegación */
+  .navbar { flex-direction: column; gap: 1rem; padding: 1.5rem; text-align: center; }
+  .nav-links { flex-direction: column; gap: 1rem; }
+  
+  /* Secciones principales */
+  .hero-content h1 { font-size: 2.5rem; }
+  .grid-perfiles { grid-template-columns: 1fr; }
+  
+  /* Zigzags (se vuelven columnas) */
+  .fila-zigzag, .fila-zigzag.reverso, 
+  .proyecto-zigzag, .proyecto-zigzag.reverso { 
+    flex-direction: column; 
+    text-align: center; 
+    gap: 2rem; 
+  }
+  
+  /* Ajuste de imágenes en proyectos */
+  .proyecto-visual { width: 100%; height: 200px; }
+
+  .grid-que-hacemos { grid-template-columns: 1fr; }
+
+  .grid-galeria-proyectos { 
+    grid-template-columns: 1fr; /* En móviles se apilan en 1 sola columna limpia */
+    gap: 1.5rem; 
+  }
+
+  /* Ajuste de logos para pantallas pequeñas */
+  .brand-logos {
+    gap: 0.5rem;
+  }
+  
+  .logo-principal,
+  .logo-secundario {
+    height: 35px; /* Todos iguales también en móvil */
+  }
+  
+  .separador-logos {
+    font-size: 1.5rem;
+    margin: 0 0.2rem;
+  }
+
+  /* En móviles, quitar posición absoluta a las redes para que fluyan normal */
+  .nav-socials {
+    position: relative;
+    left: 0;
+    transform: none;
+    margin: 1rem 0;
+    justify-content: center;
+  }
+
+  .banner-app-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  .app-texto h3 {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .app-botones {
+    flex-direction: column;
+    width: 100%;
+  }
+  .btn-tienda {
+    justify-content: center;
+  }
+}
