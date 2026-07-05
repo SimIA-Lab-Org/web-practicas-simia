@@ -225,10 +225,36 @@ footer {
    ========================================================================== */
 
 /* --- Hero --- */
+.credito-encargado {
+  text-align: center;      /* Lo centra en la pantalla */
+  margin-top: 15px;        /* Separa el texto un poco del banner */
+  margin-bottom: 5px;      /* Lo pega sutilmente al título de abajo */
+}
+
+.credito-encargado p {
+  font-size: 0.9rem;       /* Hace la letra un pelín más pequeña y fina */
+  color: #767676;          /* Un gris claro y elegante para que sea discreto */
+  font-style: italic;      /* Asegura el formato en cursiva */
+}
+
+.resaltado-verde {
+  /* Aquí puedes cambiar los colores (#...) por las variables de SimIA si las tienes definidas */
+  background: linear-gradient(90deg, rgba(129, 228, 219, 0.8), var(--color-simia-primary)); 
+  
+  /* Estos comandos recortan el degradado para que solo se vea dentro de la letra */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  
+  /* Opcional: Un pelín de sombra muy sutil para que resalte sobre el fondo oscuro del hero */
+  filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1));
+}
+
 .hero {
   background: linear-gradient(135deg, var(--color-isabial-dark), var(--color-simia-secondary), #2c5364);
   color: var(--color-blanco);
-  padding: 9rem 2rem 7rem 2rem; /* Un poco más de aire arriba por la navbar sticky */
+  padding: 5.5rem 2rem 7rem 2rem; /* Un poco más de aire arriba por la navbar sticky */
   text-align: center;
 }
 
