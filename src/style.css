@@ -421,7 +421,6 @@ footer {
   vertical-align: middle;
 }
 
-/* Opcional: si quieres que al pasar el ratón se note que es el icono de la app */
 .logo-suite-icon:hover {
   transform: scale(1.05);
 }
