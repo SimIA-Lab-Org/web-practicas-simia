@@ -534,6 +534,51 @@ footer {
   z-index: 2;
 }
 
+/* --- ESTILO ESPECÍFICO PARA LA TARJETA REVISTA --- */
+.bg-publicacion {
+  margin-top: 2rem;
+  /* Centramos el contenido y el botón */
+  text-align: center;
+  align-items: center; 
+  /* Si metes esta tarjeta dentro del <div class="grid-que-hacemos">, esto hace que ocupe todo el ancho abajo */
+  grid-column: 1 / -1; 
+  
+  /* AQUÍ ESTÁ EL SECRETO: Mismo degradado exacto que las bg-app, bg-3d... */
+  background-image: linear-gradient(rgba(23, 47, 58, 0.76), rgba(23, 47, 58, 0.76)), url('../img/premio-innovacion.jpg')
+}
+
+/* El botón de la revista (esto lo dejas como lo tenías) */
+.boton-revista img {
+  max-width: 300px;
+  padding: 10px 40px; 
+  height: auto;
+  border-radius: 12px;
+  background-color: var(--color-isabial-dark);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  margin-top: 1.5rem;
+}
+
+.boton-revista img:hover {
+  transform: scale(1.03);
+}
+
+/* El botón de la revista */
+.boton-revista img {
+  max-width: 300px;
+  padding: 10px 40px; /* Extendido horizontalmente */
+  height: auto;
+  border-radius: 12px;
+  background-color: var(--color-isabial-dark);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  margin-top: 1.5rem;
+}
+
+.boton-revista img:hover {
+  transform: scale(1.03);
+}
+
 /* =========================================================
    IMÁGENES DE FONDO PREPARADAS PARA ISABIAL 
    (Incluyen un filtro oscuro degradado para asegurar la lectura)
@@ -884,5 +929,10 @@ input[type="file"] { background-color: var(--color-fondo); cursor: pointer; }
   }
   .btn-tienda {
     justify-content: center;
+  }
+
+  .tarjeta-extra-publicacion {
+    flex-direction: column;
+    text-align: center;
   }
 }
