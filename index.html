@@ -192,7 +192,7 @@
         <div class="tarjeta-perfil">
           <h3>Prácticas de Grado</h3>
           <div class="alerta-info">
-            <strong>Bloques estrictos de 3 meses:</strong> Solo ofertamos plazas para periodos continuados de 3 meses (las dos asignaturas de prácticas curriculares). Si solo tienes/quieres una asignatura de prácticas curriculares (1.5 meses aprox.), deberás combinarla con la otra asignatura de prácticas para poder ajustarte a nuestros requisitos.
+            <strong>Bloques estrictos de 3 meses:</strong> Solo ofertamos plazas para periodos continuados de 3 meses (las dos asignaturas de prácticas curriculares). Si solo tienes/quieres una asignatura de prácticas curriculares (1.5 meses aprox.), deberás combinarla con la otra asignatura para ajustarte a nuestros requisitos.
           </div>
           <p class="explicacion-boton">Pulsa el siguiente botón para abrir el formulario de solicitud, donde podrás indicarnos tu disponibilidad y, si tienes, adjuntar tu currículum y LinkedIn.</p>
           <button type="button" id="btn-consultar" class="btn-secundario">Rellenar Formulario de Solicitud</button>
@@ -208,6 +208,25 @@
         </div>
 
       </div>
+
+      <div class="tarjeta-perfil tarjeta-cognivir">
+        <div class="cognivir-contenido">
+          <h3>¿Quieres participar en el proyecto CogniViR?</h3>
+          <p>Existe otra forma de hacer prácticas de <strong>Grado</strong> en SimIA Lab: integrarte de lleno en un proyecto reconocido de <strong>Evaluación Neurocognitiva</strong>. En <strong>CogniViR</strong> trabajarás en el desarrollo de entornos virtuales inmersivos, mecánicas interactivas y programación de lógica 3D aplicada a la salud.</p>
+          
+          <div class="alerta-discontinua">
+            <strong>Modalidad Diferente:</strong> A diferencia de las prácticas estándar, este proyecto funciona con una modalidad de <em>asistencia discontinua</em>.
+          </div>
+          
+          <p class="explicacion-boton">Si te interesa el mundo de la VR y esta flexibilidad encaja contigo, escríbenos para consultar detalles y la disponibilidad del proyecto.</p>
+          <button type="button" id="btn-cognivir" class="btn-primario">Consultar sobre CogniViR</button>
+        </div>
+        
+        <div class="cognivir-imagen">
+          <img src="img/foto-cognivir.jpg" alt="Proyecto CogniViR Realidad Virtual">
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -329,10 +348,16 @@
     const modalContacto = document.getElementById('modal-contacto');
     const cerrarContacto = document.getElementById('cerrar-contacto');
 
+    const btnCognivir = document.getElementById('btn-cognivir');
+
     // === ABRIR MODALES ===
     btnGrado.addEventListener('click', () => modalGrado.classList.add('activo'));
     btnMaster.addEventListener('click', () => modalMaster.classList.add('activo'));
     btnContacto.addEventListener('click', () => modalContacto.classList.add('activo'));
+    
+    if (btnCognivir) {
+      btnCognivir.addEventListener('click', () => modalContacto.classList.add('activo'));
+    }
 
     // === CERRAR MODALES (Clic en la X) ===
     cerrarGrado.addEventListener('click', () => modalGrado.classList.remove('activo'));
@@ -428,6 +453,6 @@
         }, 3000);
       });
     });
-  </script>
+</script>
 </body>
 </html>
