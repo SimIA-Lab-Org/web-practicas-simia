@@ -909,6 +909,80 @@ input[type="file"] { background-color: var(--color-fondo); cursor: pointer; }
 .modal-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
 .modal-content::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
+/* --- MODAL DE ÉXITO (CORRECCIÓN BLINDADA) --- */
+#modal-exito {
+  display: none; /* Oculto por defecto */
+  position: fixed; /* Lo despega de la web y lo hace flotar */
+  z-index: 9999; /* Asegura que salga por encima de absolutamente todo */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(15, 32, 39, 0.85); /* Fondo oscuro semitransparente */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cuando el Javascript le añade 'activo', cambia a display flex y se muestra */
+#modal-exito.activo {
+  display: flex; 
+}
+
+.modal-exito-contenido {
+  background-color: var(--color-blanco);
+  position: relative; /* CLAVE para que la X entienda dónde está la esquina */
+  text-align: center;
+  max-width: 450px;
+  width: 90%; /* Para que en móviles no se pegue a los bordes */
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* La cruz de cerrar */
+#cerrar-exito {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 1.8rem;
+  color: #64748b;
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#cerrar-exito:hover {
+  color: var(--color-isabial-dark);
+}
+
+/* Contenido del modal */
+.icono-exito {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.icono-exito svg {
+  width: 65px;
+  height: 65px;
+  color: var(--color-simia-primary); 
+}
+
+.modal-exito-contenido h3 {
+  font-size: 1.6rem;
+  color: var(--color-isabial-dark);
+  margin-bottom: 0.5rem;
+}
+
+.modal-exito-contenido p {
+  color: #64748b;
+  margin-bottom: 2rem;
+}
+
+#btn-entendido {
+  width: 100%;
+}
+
 /* ==========================================================================
    6. RESPONSIVE DESIGN (MÓVILES Y TABLETS)
    ========================================================================== */

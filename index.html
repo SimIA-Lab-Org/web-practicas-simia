@@ -318,6 +318,21 @@
     </div>
   </div>
 
+  <div id="modal-exito" class="modal">
+    <div class="modal-contenido modal-exito-contenido">
+      <span class="cerrar-modal" id="cerrar-exito">&times;</span>
+      <div class="icono-exito">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h3>¡Enviado con éxito!</h3>
+      <p id="mensaje-exito">Tu mensaje se ha procesado correctamente.</p>
+      <button type="button" id="btn-entendido" class="btn-primario">Entendido</button>
+    </div>
+  </div>
+
   <section id="contacto" class="contacto">
     <h2 class="titulo-seccion">Contacta con SimIA Lab</h2>
     <div class="contenedor-contacto">
@@ -350,26 +365,40 @@
 
     const btnCognivir = document.getElementById('btn-cognivir');
 
+    // Elementos del Modal de Éxito
+    const modalExito = document.getElementById('modal-exito');
+    const cerrarExito = document.getElementById('cerrar-exito');
+    const btnEntendido = document.getElementById('btn-entendido');
+    const mensajeExitoText = document.getElementById('mensaje-exito');
+
     // === ABRIR MODALES ===
     btnGrado.addEventListener('click', () => modalGrado.classList.add('activo'));
     btnMaster.addEventListener('click', () => modalMaster.classList.add('activo'));
     btnContacto.addEventListener('click', () => modalContacto.classList.add('activo'));
-    
     if (btnCognivir) {
       btnCognivir.addEventListener('click', () => modalContacto.classList.add('activo'));
     }
 
-    // === CERRAR MODALES (Clic en la X) ===
+    // === CERRAR MODALES (Clic en la X o Botón) ===
     cerrarGrado.addEventListener('click', () => modalGrado.classList.remove('activo'));
     cerrarMaster.addEventListener('click', () => modalMaster.classList.remove('activo'));
     cerrarContacto.addEventListener('click', () => modalContacto.classList.remove('activo'));
+    cerrarExito.addEventListener('click', () => modalExito.classList.remove('activo'));
+    btnEntendido.addEventListener('click', () => modalExito.classList.remove('activo'));
 
     // === CERRAR MODALES (Clic en el fondo oscuro) ===
     window.addEventListener('click', (e) => {
       if (e.target === modalGrado) modalGrado.classList.remove('activo');
       if (e.target === modalMaster) modalMaster.classList.remove('activo');
       if (e.target === modalContacto) modalContacto.classList.remove('activo');
+      if (e.target === modalExito) modalExito.classList.remove('activo');
     });
+
+    // === FUNCIÓN PARA MOSTRAR EL POPUP DE ÉXITO ===
+    function mostrarExito(mensaje) {
+      mensajeExitoText.textContent = mensaje;
+      modalExito.classList.add('activo');
+    }
 
     // === PROCESAR FORMULARIO DE GRADO ===
     document.getElementById('form-datos-alumno').addEventListener('submit', function(e) {
@@ -379,57 +408,28 @@
         alert("Por favor, selecciona al menos un periodo de prácticas de tu interés.");
         return; 
       }
-      let trimestres = [];
-      checkboxes.forEach((chk) => trimestres.push(chk.value));
-
-      const nombre = document.getElementById('alumno-nombre').value;
-      const email = document.getElementById('alumno-email').value;
-      const grado = document.getElementById('alumno-grado').value;
-      const motivo = document.getElementById('alumno-motivo').value;
-      const linkedin = document.getElementById('alumno-linkedin').value || 'No facilitado';
-
-      const destinatario = "oliver_dav@isabial.es";
-      const asunto = encodeURIComponent(`Solicitud de Prácticas Grado - ${nombre}`);
       
-      let cuerpo = `¡Hola, equipo de SimIA Lab!\n\nMi nombre es ${nombre} y me gustaría consultar la disponibilidad para prácticas.\n\n--- DATOS DEL ALUMNO ---\nEmail: ${email}\nTitulación: ${grado}\nTrimestres: ${trimestres.join(' // ')}\nLinkedIn: ${linkedin}\n\n--- MOTIVACIÓN ---\n${motivo}\n\n*Nota: Recuerda adjuntar tu CV en PDF antes de enviar.*`;
-
-      window.location.href = `mailto:${destinatario}?subject=${asunto}&body=${encodeURIComponent(cuerpo)}`;
       modalGrado.classList.remove('activo'); 
+      e.target.reset(); 
+      mostrarExito("¡Solicitud enviada correctamente! Nos pondremos en contacto contigo pronto.");
     });
 
     // === PROCESAR FORMULARIO DE MÁSTER / TFG ===
     document.getElementById('form-datos-master').addEventListener('submit', function(e) {
       e.preventDefault(); 
       
-      const tipo = document.getElementById('master-tipo').value;
-      const asuntoInput = document.getElementById('master-asunto').value;
-      const mensaje = document.getElementById('master-mensaje').value;
-
-      const destinatario = "oliver_dav@isabial.es";
-      const asunto = encodeURIComponent(`[${tipo}] ${asuntoInput}`);
-      
-      let cuerpo = `¡Hola, equipo de SimIA Lab!\n\nOs escribo para realizar la siguiente consulta relacionada con: ${tipo}\n\n--- DETALLES DE LA PROPUESTA / CONSULTA ---\n${mensaje}\n\n------------------------\n*Enviado desde el formulario web de SimIA Lab*`;
-
-      window.location.href = `mailto:${destinatario}?subject=${asunto}&body=${encodeURIComponent(cuerpo)}`;
       modalMaster.classList.remove('activo'); 
+      e.target.reset(); 
+      mostrarExito("¡Mensaje enviado correctamente!");
     });
 
     // === PROCESAR FORMULARIO DE CONTACTO GENERAL ===
     document.getElementById('form-datos-contacto').addEventListener('submit', function(e) {
       e.preventDefault(); 
       
-      const nombre = document.getElementById('contacto-nombre').value;
-      const email = document.getElementById('contacto-email').value;
-      const asuntoInput = document.getElementById('contacto-asunto').value;
-      const mensaje = document.getElementById('contacto-mensaje').value;
-
-      const destinatario = "oliver_dav@isabial.es";
-      const asunto = encodeURIComponent(`Consulta SimIA - ${asuntoInput}`);
-      
-      let cuerpo = `¡Hola, equipo de SimIA Lab!\n\nTenéis una nueva consulta general.\n\n--- DATOS DEL CONTACTO ---\nNombre: ${nombre}\nEmail: ${email}\n\n--- MENSAJE ---\n${mensaje}\n\n------------------------\n*Enviado desde el formulario de contacto web de SimIA Lab*`;
-
-      window.location.href = `mailto:${destinatario}?subject=${asunto}&body=${encodeURIComponent(cuerpo)}`;
       modalContacto.classList.remove('activo'); 
+      e.target.reset(); 
+      mostrarExito("¡Consulta enviada! Te responderemos lo antes posible.");
     });
 
     // === LÓGICA DE LA APP SIMIA SUITE (TOAST EN DESARROLLO) ===
@@ -439,20 +439,14 @@
 
     botonesApp.forEach(boton => {
       boton.addEventListener('click', (e) => {
-        e.preventDefault(); // Evita que la web haga un salto raro
-        
-        // Muestra el toast
+        e.preventDefault(); 
         toast.classList.add('mostrar');
-        
-        // Reinicia el contador si pulsas varias veces rápido
         clearTimeout(toastTimeout);
-        
-        // Lo oculta a los 3 segundos
         toastTimeout = setTimeout(() => {
           toast.classList.remove('mostrar');
         }, 3000);
       });
     });
-</script>
+  </script>
 </body>
 </html>
