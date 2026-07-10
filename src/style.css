@@ -1035,9 +1035,14 @@ footer a:hover {
   }
 
   /* Tarjeta 3: Impacto Clínico */
-.tarjeta-hacer:nth-child(3) .img-tarjeta-hacer {
-  object-position: center 20%;
-}
+  .tarjeta-hacer:nth-child(3) .img-tarjeta-hacer {
+    object-position: center 20%;
+  }
+
+  .tarjeta-hacer:nth-child(4) .img-tarjeta-hacer {
+    margin-top: -80px;
+    margin-bottom: -80px;
+  }
 
   .contenido-tarjeta-hacer,
   .tarjeta-extra-publicacion .contenido-tarjeta-hacer {
@@ -1064,7 +1069,7 @@ footer a:hover {
   /* NUEVO: Igualamos la altura de las fotos de proyectos a las de arriba */
   .img-galeria {
     width: 100%;
-    height: 220px; 
+    height: 190px; 
   }
 
   /* --- 7. Solicitud de Prácticas y CogniViR --- */
