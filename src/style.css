@@ -576,6 +576,26 @@ h1, h2, h3 {
 }
 
 /* ==========================================================================
+   BOTÓN YOUTUBE (Icono + Texto)
+   ========================================================================== */
+
+.btn-youtube {
+  margin: 1em auto 0 auto;
+  display: inline-flex !important; 
+  align-items: center !important;
+  justify-content: center !important; /* Mantiene logo y texto pegaditos y centrados */
+  width: max-content !important;      /* MAGIA: Obliga al botón a medir EXACTAMENTE lo que ocupan sus letras y logo, ni un píxel más */
+  gap: 0.5rem;
+}
+
+/* Ajuste BLINDADO del tamaño del logo para que nunca salga gigante */
+.btn-youtube img {
+  height: 20px !important; 
+  width: auto !important;
+  margin: 0 !important;
+}
+
+/* ==========================================================================
    AJUSTES DE ENCUADRE DE LAS FOTOS (OBJECT-POSITION)
    ========================================================================== */
 
@@ -597,6 +617,12 @@ h1, h2, h3 {
 /* Tarjeta 4: Tu primer Artículo Científico */
 .tarjeta-hacer:nth-child(4) .img-tarjeta-hacer {
   object-position: center center; /* Ejemplo con porcentajes para precisión milimétrica */
+  padding-bottom: 60px;
+}
+
+/* Tarjeta 5: CogniViR */
+.tarjeta-hacer:nth-child(5) .img-tarjeta-hacer {
+  object-position: center 90%; 
 }
 
 /* =========================================================
@@ -801,30 +827,6 @@ input[type="file"] { background-color: var(--color-blanco); cursor: pointer; }
   font-weight: normal;     /* Le quitamos la negrita que hereda del label */
   display: inline-block;   /* Ayuda a que el espaciado con el <br> quede perfecto */
   margin-top: 0.2rem;
-}
-
-/* Opciones Trimestre Checkbox */
-.opciones-trimestre { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1rem; }
-.opciones-trimestre label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-weight: normal;
-  cursor: pointer;
-  background: var(--color-blanco);
-  padding: 0.8rem;
-  border-radius: 8px;
-  border: 1px solid #cbd5e1;
-  transition: background 0.2s;
-}
-.opciones-trimestre label:hover { background: #e2e8f0; }
-
-.chk-trimestre {
-  width: auto !important;
-  height: auto !important;
-  cursor: pointer;
-  transform: scale(1.1);
-  margin-right: 0.5rem;
 }
 
 .texto-exito { color: var(--color-isabial-primario); font-weight: bold; margin-bottom: 1rem; }
@@ -1045,6 +1047,11 @@ footer a:hover {
     margin-bottom: -80px;
   }
 
+  .tarjeta-hacer:nth-child(5) .img-tarjeta-hacer {
+    object-position: center center;
+    
+  }
+
   .contenido-tarjeta-hacer,
   .tarjeta-extra-publicacion .contenido-tarjeta-hacer {
     width: 100% !important;
@@ -1057,7 +1064,6 @@ footer a:hover {
     margin: 1.5rem auto 0 auto; /* Centramos el botón negro de la revista */
     display: block;
   }
-
   /* --- 6. Proyectos de Estudiantes --- */
   .proyectos-seccion {
     padding: 4rem 1rem;
