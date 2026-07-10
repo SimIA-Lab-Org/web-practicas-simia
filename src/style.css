@@ -707,6 +707,7 @@ h1, h2, h3 {
   margin: 2rem auto;
   max-width: 1200px;
   padding: 0 2rem; 
+  scroll-margin-top: -10px;
 }
 
 /* Título en rojo */
