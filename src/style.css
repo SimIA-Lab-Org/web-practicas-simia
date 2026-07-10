@@ -2,14 +2,19 @@
    1. VARIABLES Y CONFIGURACIÓN GLOBAL
    ========================================================================== */
 :root {
-  --color-isabial-dark: #0f2027;
-  --color-simia-primary: #0d9488;
-  --color-simia-secondary: #203a43;
-  --color-fondo: #f8fafc;
-  --color-texto: #334155;
-  --color-texto-claro: #94a3b8;
-  --color-blanco: #ffffff;
-  --fuente-principal: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  /* =========================================
+     PALETA CORPORATIVA ESTRICTA (Manual ISABIAL)
+     ========================================= */
+  --color-isabial-primario: #567CA8; /* Azul base oficial */
+  --color-isabial-gris: #8C8C8B;     /* Gris oficial */
+  --color-isabial-rojo: #C81530;     /* Rojo oficial */
+  --color-isabial-verde: #a9ce7e;    /* Verde oficial */
+  --color-negro: #000000;            /* Negro */
+  --color-blanco: #ffffff;           /* Blanco */
+
+  /* Configuración de tus tipografías originales */
+  --fuente-titulos: 'Verdana', sans-serif;
+  --fuente-principal: 'Nunito', 'Segoe UI', 'Arial', sans-serif;
 }
 
 * {
@@ -29,9 +34,17 @@ html {
 
 body {
   font-family: var(--fuente-principal);
-  background-color: var(--color-fondo);
-  color: var(--color-texto);
+  background-color: var(--color-blanco);
+  color: var(--color-negro);
   line-height: 1.6;
+}
+
+section {
+  scroll-margin-top: -80px; /* Ajusta este número (100px, 120px...) según lo alta que sea tu barra de navegación */
+}
+
+h1, h2, h3 {
+  font-family: var(--fuente-titulos)
 }
 
 /* ==========================================================================
@@ -41,78 +54,52 @@ body {
   text-align: center;
   font-size: 2.5rem;
   margin-bottom: 4rem;
-  color: var(--color-isabial-dark);
-}
-
-.titulo-seccion.blanco {
-  color: var(--color-blanco);
-  margin-bottom: 1rem;
-}
-
-.subtitulo-blanco {
-  text-align: center;
-  color: #cbd5e1;
-  margin-bottom: 4rem;
-}
-
-.subtitulo-centrado {
-  text-align: center;
-  color: #64748b;
-  font-size: 1.2rem;
-  margin-top: -3rem;
-  margin-bottom: 4rem;
+  color: var(--color-isabial-rojo);
 }
 
 .divisor {
   border: 0;
   height: 1px;
-  background: #cbd5e1;
+  background: var(--color-blanco);
   margin: 1.5rem 0;
 }
 
 /* --- Botones --- */
-.btn-primario {
-  background-color: var(--color-simia-primary);
+.btn-primario,
+.btn-secundario,
+.btn-primario-oscuro {
+  /* Reglas unificadas para todos los botones principales de la web */
   color: var(--color-blanco);
-  padding: 1rem 2rem;
   text-decoration: none;
   border-radius: 8px;
   font-weight: bold;
   font-size: 1.1rem;
-  transition: transform 0.2s;
+  font-family: var(--fuente-principal); 
   display: inline-block;
   border: none;
   cursor: pointer;
+  transition: transform 0.2s; /* Transición limpia solo para el tamaño */
 }
 
-.btn-primario:hover { transform: scale(1.05); }
+.btn-primario {
+  background-color: var(--color-isabial-rojo);
+  padding: 1rem 2rem;
+}
 
-/* --- Botones Oscuros Iguales (Grado y Máster) --- */
 .btn-secundario,
 .btn-primario-oscuro {
-  display: block;
   width: 100%;
-  box-sizing: border-box; /* Asegura que ambos midan exactamente lo mismo de ancho */
+  box-sizing: border-box;
   text-align: center;
-  background-color: var(--color-isabial-dark);
-  color: var(--color-blanco);
-  border: none;
+  background-color: var(--color-isabial-rojo);
   padding: 1rem;
-  border-radius: 8px;
-  
-  /* Forzamos tipografía idéntica para <a> y <button> */
-  font-family: var(--fuente-principal); 
-  font-size: 1rem; 
-  font-weight: bold;
-  text-decoration: none;
-  
-  cursor: pointer;
-  transition: background 0.3s ease;
 }
 
+/* Efecto hover único y centralizado para todos */
+.btn-primario:hover,
 .btn-secundario:hover,
-.btn-primario-oscuro:hover {
-  background-color: var(--color-simia-primary);
+.btn-primario-oscuro:hover { 
+  transform: scale(1.05); 
 }
 
 .btn-full {
@@ -121,18 +108,18 @@ body {
 }
 
 /* ==========================================================================
-   3. NAVEGACIÓN Y FOOTER
+   3. NAVEGACIÓN
    ========================================================================== */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem 4rem;
-  background-color: var(--color-isabial-dark);
+  background-color: var(--color-blanco);
   color: var(--color-blanco);
   
   /* Aquí está la fusión clave: */
-  position: sticky; 
+  position:static; 
   top: 0;
   z-index: 100; 
 }
@@ -159,7 +146,7 @@ body {
 
 /* Línea separadora */
 .separador-logos {
-  color: #475569; 
+  color: var(--color-isabial-gris); 
   font-size: 2rem;
   font-weight: 300;
   margin: 0 0.5rem;
@@ -167,28 +154,44 @@ body {
 }
 
 .nav-links {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  align-items: center;
+  display: flex;          /* Hace que los elementos se pongan en fila */
+  flex-direction: row;    /* Fuerza la dirección horizontal */
+  align-items: center;    /* Los centra verticalmente en la barra */
+  gap: 1.8rem;            /* Espaciado limpio entre cada texto del menú */
+  list-style: none;       /* Quita los puntitos de la lista */
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  display: inline-block;  /* Refuerza que no actúen como bloques verticales */
 }
 
 .nav-links a {
-  color: var(--color-blanco);
+  color: var(--color-isabial-primario);
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s;
+  display: inline-block; /* Necesario para que el transform funcione en enlaces inline */
+  transition: transform 0.2s;
 }
 
-.nav-links a:hover { color: var(--color-simia-primary); }
+.nav-links a:hover {
+  transform: scale(1.05);
+}
 
 .btn-contacto {
-  background-color: var(--color-simia-primary);
+  color: var(--color-blanco) !important;
+  background-color: var(--color-isabial-rojo);
   padding: 0.5rem 1.5rem;
   border-radius: 6px;
+  display: inline-block;
+  transition: transform 0.2s;
 }
 
-.btn-contacto:hover { background-color: #0f766e; color: var(--color-blanco) !important; }
+.btn-contacto:hover {
+  /* Eliminamos el cambio de background y mantenemos solo el scale */
+  transform: scale(1.05);
+}
 
 /* Redes Sociales Centradas */
 .nav-socials {
@@ -200,8 +203,7 @@ body {
 }
 
 .nav-socials a {
-  color: var(--color-blanco);
-  opacity: 0.45; /* Transparencia base */
+  color: var(--color-isabial-primario);
   transition: opacity 0.3s ease, transform 0.3s ease;
   display: flex;
   align-items: center;
@@ -212,54 +214,36 @@ body {
   transform: scale(1.15); /* Crece un poquito */
 }
 
-footer {
-  background-color: #020617;
-  color: #64748b;
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.9rem;
-}
-
 /* ==========================================================================
    4. SECCIONES PRINCIPALES
    ========================================================================== */
 
 /* --- Hero --- */
 .credito-encargado {
+  color: var(--color-blanco);
   text-align: center;      /* Lo centra en la pantalla */
-  margin-top: 15px;        /* Separa el texto un poco del banner */
   margin-bottom: 5px;      /* Lo pega sutilmente al título de abajo */
 }
 
 .credito-encargado p {
   font-size: 0.9rem;       /* Hace la letra un pelín más pequeña y fina */
-  color: #767676;          /* Un gris claro y elegante para que sea discreto */
+  color: var(--color-blanco);          /* Un gris claro y elegante para que sea discreto */
   font-style: italic;      /* Asegura el formato en cursiva */
 }
 
-.resaltado-verde {
-  /* Aquí puedes cambiar los colores (#...) por las variables de SimIA si las tienes definidas */
-  background: linear-gradient(90deg, rgba(129, 228, 219, 0.8), var(--color-simia-primary)); 
-  
-  /* Estos comandos recortan el degradado para que solo se vea dentro de la letra */
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-  
-  /* Opcional: Un pelín de sombra muy sutil para que resalte sobre el fondo oscuro del hero */
-  filter: drop-shadow(0px 2px 2px rgba(0,0,0,0.1));
+.resaltado {
+  color:var(--color-isabial-verde)
 }
 
 .hero {
-  background: linear-gradient(135deg, var(--color-isabial-dark), var(--color-simia-secondary), #2c5364);
+  background: var(--color-isabial-primario);
   color: var(--color-blanco);
-  padding: 5.5rem 2rem 7rem 2rem; /* Un poco más de aire arriba por la navbar sticky */
+  padding: 5rem 2rem 5.5rem 2rem; /* Un poco más de aire arriba por la navbar sticky */
   text-align: center;
 }
 
 .hero-content {
-  max-width: 900px;
+  max-width: 950px;
   margin: 0 auto;
 }
 
@@ -273,16 +257,17 @@ footer {
 .hero-subtitulo {
   font-size: 1.3rem;
   margin-bottom: 3rem;
-  color: #cbd5e1;
+  color: var(--color-blanco);
   font-weight: 300;
 }
 
 /* Contenedor de las dos vías de estudiantes */
 .hero-perfiles-container {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-  margin-bottom: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Fuerza 3 columnas iguales */
+  gap: 1.5rem;
+  max-width: 1000px; /* Le damos un poco más de ancho total para que quepan bien las 3 */
+  margin: 2rem auto;
 }
 
 .pildora-perfil {
@@ -301,7 +286,7 @@ footer {
 
 .categoria-badge {
   align-self: flex-start;
-  background-color: var(--color-simia-primary);
+  background-color: var(--color-isabial-primario);
   color: var(--color-blanco);
   font-size: 0.8rem;
   font-weight: bold;
@@ -313,7 +298,7 @@ footer {
 
 .pildora-perfil p {
   font-size: 0.95rem;
-  color: #e2e8f0;
+  color: var(--color-blanco);
   line-height: 1.4;
   margin: 0;
 }
@@ -323,11 +308,10 @@ footer {
    ========================================================================== */
 .banner-app {
   background-color: var(--color-blanco);
-  border-bottom: 1px solid #e2e8f0;
   padding: 2.5rem 2rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.15);
   position: relative;
-  z-index: 10;
+  z-index: 5;
 }
 
 .banner-app-content {
@@ -341,7 +325,7 @@ footer {
 
 .app-texto h3 {
   font-size: 1.5rem;
-  color: var(--color-isabial-dark);
+  color: var(--color-negro);
   margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
@@ -351,7 +335,7 @@ footer {
 .badge-proximamente {
   font-size: 0.75rem;
   background-color: #f59e0b; /* Naranja llamativo */
-  color: white;
+  color: var(--color-blanco);
   padding: 0.2rem 0.6rem;
   border-radius: 20px;
   text-transform: uppercase;
@@ -359,7 +343,7 @@ footer {
 }
 
 .app-texto p {
-  color: #475569;
+  color: var(--color-negro);
   font-size: 1rem;
   margin: 0;
   line-height: 1.5;
@@ -375,18 +359,17 @@ footer {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background-color: var(--color-isabial-dark);
-  color: white;
+  background-color: var(--color-negro);
+  color: var(--color-blanco);
   border: none;
   padding: 0.5rem 1.25rem;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
+  transition: transform 0.2s;
   text-align: left;
 }
 
 .btn-tienda:hover {
-  background-color: var(--color-simia-primary);
   transform: translateY(-3px);
 }
 
@@ -412,8 +395,8 @@ footer {
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%) translateY(100px);
-  background-color: var(--color-isabial-dark);
-  color: white;
+  background-color: var(--color-negro);
+  color: var(--color-blanco);
   padding: 1rem 2rem;
   border-radius: 50px;
   font-weight: bold;
@@ -440,7 +423,7 @@ footer {
   
   /* Aquí está la magia de la sombra */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25), 
-              0 2px 4px rgba(0, 0, 0, 0.1);
+              0 2px 4px rgba(196, 8, 8, 0.1);
   
   /* Transición por si en el futuro quieres que reaccione al pasar el ratón */
   transition: transform 0.2s ease;
@@ -464,13 +447,13 @@ footer {
   display: flex;
   align-items: center;
   gap: 10px;            /* Espacio entre el logo y el texto */
-  background-color: var(--color-simia-secondary);
-  color: white;
+  background-color: var(--color-isabial-rojo);
+  color: var(--color-blanco);
   border: none;
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
+  transition: transform 0.2s;
 }
 
 .textos-tienda strong {
@@ -491,92 +474,128 @@ footer {
   gap: 2rem;
 }
 
-.tarjeta-hacer {
-  border-radius: 16px;
-  padding: 2.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* ==========================================================================
+   QUÉ HACEMOS (DISEÑO UNIFICADO EN ZIG-ZAG - VERSIÓN DEFINITIVA)
+   ========================================================================== */
+.que-hacemos {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 6rem 2rem;
+}
+
+.grid-que-hacemos {
   display: flex;
   flex-direction: column;
-  color: var(--color-blanco);
-  
-  /* Ajustes para la imagen de fondo */
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  overflow: hidden;
-  
+  gap: 4rem; /* Espacio entre las tarjetas */
+}
 
-  /* Sombra para mejorar contraste sin oscurecer tanto el fondo */
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.411);
+/* 1. LA TARJETA: Ahora es un contenedor relativo */
+.tarjeta-hacer {
+  border-radius: 16px;
+  background-color: var(--color-blanco);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative; /* CLAVE: Para que la foto se mueva dentro de la tarjeta */
+  display: flex;
+  justify-content: flex-end; /* Por defecto, empujamos el texto hacia la derecha */
+  overflow: hidden;
+}
+
+/* LA MAGIA DEL ZIG-ZAG: En las pares, empujamos el texto hacia la izquierda */
+.tarjeta-hacer:nth-child(even) {
+  justify-content: flex-start; 
 }
 
 .tarjeta-hacer:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
+}
+
+/* 2. LA FOTO: Absoluta. Se acopla al espacio sin dictar la altura de la tarjeta */
+.img-tarjeta-hacer {
+  position: absolute; /* CLAVE: La sacamos del "caudal" para que no deforme nada */
+  top: 0;
+  left: 0;
+  width: 45%; 
+  height: 100%;
+  object-fit: cover; 
+}
+
+/* ZIG-ZAG FOTO: En las pares, la foto se pega a la derecha */
+.tarjeta-hacer:nth-child(even) .img-tarjeta-hacer {
+  left: auto;
+  right: 0;
+}
+
+/* 3. EL TEXTO: Es el ÚNICO jefe de la tarjeta y dicta cuánto va a medir de alto */
+.contenido-tarjeta-hacer {
+  width: 55%; 
+  padding: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative; /* Lo ponemos relativo para que quede por encima de la foto por si acaso */
+  z-index: 1;
 }
 
 .tarjeta-hacer h3 {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  color: var(--color-blanco); /* Forzamos blanco sobre el fondo oscuro */
-  border-bottom: 2px solid var(--color-simia-primary);
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-isabial-primario);
+  border-bottom: 2px solid var(--color-isabial-primario);
   padding-bottom: 0.8rem;
-  z-index: 2; /* Para que el texto quede por encima del fondo */
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0);
 }
 
 .tarjeta-hacer p {
-  font-size: 1.05rem;
-  color: #f1f5f9; /* Un gris muy clarito (casi blanco) para el texto secundario */
-  line-height: 1.6;
-  flex-grow: 1;
-  z-index: 2;
+  font-size: 1.1rem;
+  color: var(--color-negro);
+  line-height: 1.7;
 }
 
-/* --- ESTILO ESPECÍFICO PARA LA TARJETA REVISTA --- */
-.bg-publicacion {
-  margin-top: 2rem;
-  /* Centramos el contenido y el botón */
-  text-align: center;
-  align-items: center; 
-  /* Si metes esta tarjeta dentro del <div class="grid-que-hacemos">, esto hace que ocupe todo el ancho abajo */
-  grid-column: 1 / -1; 
-  
-  /* AQUÍ ESTÁ EL SECRETO: Mismo degradado exacto que las bg-app, bg-3d... */
-  background-image: linear-gradient(rgba(23, 47, 58, 0.76), rgba(23, 47, 58, 0.76)), url('../img/premio-innovacion.jpg')
+.tarjeta-extra-publicacion .img-tarjeta-hacer {
+  object-fit: contain; /* Fuerza a que la foto no se recorte nada */
+  background-color: var(--color-blanco); /* Por si la foto no rellena todo el ancho, que el fondo quede limpio */
+  padding: 1rem; /* Opcional: le da un poquito de aire alrededor */
 }
 
-/* El botón de la revista (esto lo dejas como lo tenías) */
+/* Botón específico de la revista */
 .boton-revista img {
-  max-width: 300px;
-  padding: 10px 40px; 
+  max-width: 250px;
+  padding: 10px 20px; 
   height: auto;
   border-radius: 12px;
-  background-color: var(--color-isabial-dark);
+  background-color: var(--color-negro);
   transition: transform 0.3s ease;
   cursor: pointer;
   margin-top: 1.5rem;
 } 
 
 .boton-revista img:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
-/* El botón de la revista */
-.boton-revista img {
-  max-width: 300px;
-  padding: 10px 40px; /* Extendido horizontalmente */
-  height: auto;
-  border-radius: 12px;
-  background-color: var(--color-isabial-dark);
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  margin-top: 1.5rem;
+/* ==========================================================================
+   AJUSTES DE ENCUADRE DE LAS FOTOS (OBJECT-POSITION)
+   ========================================================================== */
+
+/* Tarjeta 1: Desarrollo de Aplicaciones */
+.tarjeta-hacer:nth-child(1) .img-tarjeta-hacer {
+  object-position: center center; /* Por defecto (centrado total) */
 }
 
-.boton-revista img:hover {
-  transform: scale(1.03);
+/* Tarjeta 2: Simuladores 3D e IoT (Solución para cabezas cortadas) */
+.tarjeta-hacer:nth-child(2) .img-tarjeta-hacer {
+  object-position: center 60%; /* Alinea la foto arriba del todo, evitando cortar cabezas */
+}
+
+/* Tarjeta 3: Impacto Clínico */
+.tarjeta-hacer:nth-child(3) .img-tarjeta-hacer {
+  object-position: center 35%;
+}
+
+/* Tarjeta 4: Tu primer Artículo Científico */
+.tarjeta-hacer:nth-child(4) .img-tarjeta-hacer {
+  object-position: center center; /* Ejemplo con porcentajes para precisión milimétrica */
 }
 
 /* =========================================================
@@ -584,24 +603,26 @@ footer {
    (Incluyen un filtro oscuro degradado para asegurar la lectura)
    ========================================================= */
 
-.bg-app {
-  background-image: linear-gradient(rgba(32, 56, 66, 0.6), rgba(32, 56, 66, 0.6)), url('../img/apps.jpeg');
-}
-
-.bg-3d {
-  background-image: linear-gradient(rgba(32, 56, 66, 0.6), rgba(32, 56, 66, 0.6)), url('../img/simuladores-electronica-3D.jpeg');
-}
-
-.bg-impacto {
-  background-image: linear-gradient(rgba(32, 56, 66, 0.6), rgba(32, 56, 66, 0.6)), url('../img/impacto-clinico.jpeg');
-}
-
-/* --- Galería de Proyectos de Alumnos --- */
 .proyectos-seccion {
-  background-color: var(--color-blanco);
-  padding: 6rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1200px; /* Hacemos que mida igual que el resto de secciones */
+  margin: 0 auto;    /* Esto es la magia que centra todo el bloque en la pantalla */
+  padding: 4rem 2rem; /* Le da aire por arriba, por abajo y por los lados */
+  margin-bottom: 6rem; /* Espacio extra antes de la siguiente sección */
+}
+
+/* Centramos el título grande principal de proyectos */
+.proyectos-seccion .titulo-seccion {
+  text-align: center;
+  margin-bottom: 0.5rem; /* Lo acercamos al subtítulo */
+}
+
+/* Centramos el subtítulo rojo y le damos su espacio antes de las tarjetas */
+.proyectos-seccion .subtitulo-centrado {
+  color: var(--color-isabial-rojo) !important; 
+  text-align: center;
+  font-size: 1.15rem;
+  margin-top: 0;
+  margin-bottom: 4rem; /* Espacio amplio antes de la cuadrícula de fotos */
 }
 
 .grid-galeria-proyectos {
@@ -611,10 +632,10 @@ footer {
 }
 
 .tarjeta-galeria {
-  background-color: var(--color-fondo);
-  border-radius: 12px;
+  background-color: var(--color-blanco);
+  border-radius: 16px;
   overflow: hidden; /* Esto asegura que la imagen respete las esquinas redondeadas */
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2); /* Mismo sombreado inicial */  display: flex;
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -622,7 +643,7 @@ footer {
 
 .tarjeta-galeria:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 20px -3px rgba(13, 148, 136, 0.15); /* Sombra con un sutil tono verde/teal */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
 }
 
 .img-galeria {
@@ -649,21 +670,21 @@ footer {
 
 .pie-galeria h3 {
   font-size: 1.15rem;
-  color: var(--color-isabial-dark);
+  color: var(--color-negro);
   line-height: 1.4;
   margin: 0;
 }
 
 .modalidad-proyecto {
   font-size: 0.9rem;
-  color: var(--color-simia-primary); /* Destaca la modalidad con el color corporativo */
+  color: var(--color-isabial-primario); /* Destaca la modalidad con el color corporativo */
   font-weight: 600;
   display: block;
 }
 
 .autor-proyecto {
   font-size: 0.85rem;
-  color: #64748b;
+  color: var(--color-isabial-gris);
   font-style: italic; /* En cursiva y un poco más pequeña */
   display: block;
 }
@@ -682,10 +703,34 @@ footer {
    5. SECCIÓN PRÁCTICAS Y FORMULARIOS
    ========================================================================== */
 .practicas-seccion {
-  background-color: var(--color-isabial-dark);
-  padding: 6rem 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+  padding: 0 2rem; 
 }
-.contenedor-practicas { max-width: 1000px; margin: 0 auto; }
+
+/* Título en rojo */
+.practicas-seccion .titulo-seccion {
+  color: var(--color-isabial-rojo) !important; 
+  margin-bottom: 0.5rem; 
+  border-bottom: none; 
+}
+
+/* Subtítulo en rojo y centrado, fuera de la caja azul */
+.practicas-seccion .subtitulo-rojo {
+  color: var(--color-isabial-rojo) !important; 
+  margin-top: 0;
+  margin-bottom: 2.5rem; 
+  font-size: 1.15rem;
+  text-align: center; 
+}
+
+/* La caja azul que solo envuelve el contenido interior */
+.contenedor-practicas {
+  background-color: var(--color-isabial-primario); 
+  padding: 5rem 2rem; 
+  border-radius: 20px; 
+}
+
 .grid-perfiles { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
 
 .tarjeta-perfil {
@@ -694,7 +739,7 @@ footer {
   border-radius: 16px;
   box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
 }
-.tarjeta-perfil h3 { color: var(--color-simia-primary); font-size: 1.5rem; margin-bottom: 1rem; }
+.tarjeta-perfil h3 { color: var(--color-isabial-primario); font-size: 1.5rem; margin-bottom: 1rem; }
 
 /* Alertas UI */
 .alerta-entrevista {
@@ -707,7 +752,7 @@ footer {
 }
 .alerta-info {
   background-color: #e0f2fe;
-  border-left: 4px solid #0284c7;
+  border-left: 4px solid var(--color-isabial-primario);
   padding: 1rem;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
@@ -715,21 +760,12 @@ footer {
   border-radius: 0 8px 8px 0;
 }
 .alerta-master {
-  background-color: #f1f5f9;
-  border-left: 4px solid var(--color-simia-primary);
+  background-color: #e0f2fe;
+  border-left: 4px solid var(--color-isabial-primario);
   padding: 1rem;
   margin: 1.5rem 0;
   font-size: 0.9rem;
   color: #475569;
-}
-.aviso-cv {
-  font-size: 0.85rem;
-  color: #ef4444;
-  margin-top: 0.5rem;
-  text-align: center;
-  background: #fef2f2;
-  padding: 0.5rem;
-  border-radius: 6px;
 }
 
 /* Formulario */
@@ -738,7 +774,7 @@ footer {
   font-size: 0.95rem;
   color: #475569;
   text-align: center;
-  background-color: var(--color-fondo);
+  background-color: var(--color-blanco);
   padding: 1rem;
   border-radius: 8px;
   border: 1px dashed #cbd5e1;
@@ -755,7 +791,7 @@ footer {
   font-family: inherit;
   width: 100%;
 }
-input[type="file"] { background-color: var(--color-fondo); cursor: pointer; }
+input[type="file"] { background-color: var(--color-blanco); cursor: pointer; }
 
 .subtexto-label {
   color: rgb(51, 65, 85);          /* Gris claro y elegante */
@@ -772,7 +808,7 @@ input[type="file"] { background-color: var(--color-fondo); cursor: pointer; }
   gap: 0.5rem;
   font-weight: normal;
   cursor: pointer;
-  background: var(--color-fondo);
+  background: var(--color-blanco);
   padding: 0.8rem;
   border-radius: 8px;
   border: 1px solid #cbd5e1;
@@ -788,10 +824,10 @@ input[type="file"] { background-color: var(--color-fondo); cursor: pointer; }
   margin-right: 0.5rem;
 }
 
-.texto-exito { color: var(--color-simia-primary); font-weight: bold; margin-bottom: 1rem; }
+.texto-exito { color: var(--color-isabial-primario); font-weight: bold; margin-bottom: 1rem; }
 
 /* =========================================================
-   TARJETA ESPECIAL: PROYECTO COGNIVIR (ESTILO UNIFICADO)
+   TARJETA ESPECIAL: PROYECTO COGNIVIR
    ========================================================= */
 .tarjeta-cognivir {
   margin-top: 3rem;
@@ -812,13 +848,13 @@ input[type="file"] { background-color: var(--color-fondo); cursor: pointer; }
 }
 
 .alerta-discontinua {
-  background: rgba(13, 148, 136, 0.1); /* Un verde muy sutil que pega con el fondo claro */
-  border-left: 4px solid var(--color-simia-primary);
+  background: #e0f2fe;
+  border-left: 4px solid var(--color-isabial-primario);
   padding: 1rem 1.5rem;
   margin: 1.5rem 0;
   border-radius: 0 8px 8px 0;
   font-size: 0.95rem;
-  color: var(--color-texto); /* Texto oscuro como los demás */
+  color: var(--color-negro);
 }
 
 .cognivir-imagen {
@@ -835,154 +871,67 @@ input[type="file"] { background-color: var(--color-fondo); cursor: pointer; }
   transition: transform 0.3s ease;
 }
 
-.cognivir-imagen img:hover {
-  transform: scale(1.03);
+/* ==========================================================================
+   SECCIÓN CONTACTO (FONDO AZUL ISABIAL Y TEXTOS BLANCOS)
+   ========================================================================== */
+.contacto {
+  background-color: var(--color-isabial-primario); /* Azul principal corporativo ISABIAL */
+  margin-top: 5rem;
+  margin-bottom: -5rem;
+  padding: 5rem 2rem;
+  text-align: center;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
 }
 
-/* Contacto */
-.contacto { padding: 6rem 2rem; text-align: center; }
-.contenedor-contacto p { font-size: 1.2rem; margin-bottom: 2rem; }
+/* Forzamos el título a blanco y quitamos líneas sobrantes */
+.contacto .titulo-seccion {
+  color: var(--color-blanco) !important;
+  border-bottom: none;
+  margin-bottom: 1rem;
+}
+
+/* Texto descriptivo en blanco */
+.contacto p {
+  color: var(--color-blanco) !important;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+/* Mismo efecto de crecimiento sutil que unificamos al principio */
+.contacto .btn-primario:hover {
+  transform: scale(1.05);
+}
 
 /* ==========================================================================
-   VENTANAS MODALES (POP-UPS)
+   FOOTER (EL CIERRE DE ABAJÍSIMO DEL TODO)
    ========================================================================== */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(15, 32, 39, 0.85); /* Fondo oscuro corporativo */
-  z-index: 9999; /* Por encima de todo */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  backdrop-filter: blur(4px); /* Difumina lo que hay detrás */
-}
-
-.modal-overlay.activo {
-  opacity: 1;
-  visibility: visible;
-}
-
-.modal-content {
-  background-color: var(--color-blanco);
-  width: 90%;
-  max-width: 700px;
-  max-height: 90vh; /* Para que no se salga de la pantalla si hay mucho texto */
-  overflow-y: auto; /* Scroll interno si es necesario */
-  border-radius: 12px;
-  padding: 3rem 2.5rem;
-  position: relative;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-  transform: translateY(-30px);
-  transition: transform 0.3s ease;
-}
-
-.modal-overlay.activo .modal-content {
-  transform: translateY(0);
-}
-
-.btn-cerrar {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: none;
-  border: none;
-  font-size: 2.2rem;
-  line-height: 1;
-  color: #94a3b8;
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.btn-cerrar:hover {
-  color: #ef4444; /* Rojo al pasar el ratón */
-}
-
-/* Scrollbar personalizada para el modal */
-.modal-content::-webkit-scrollbar { width: 8px; }
-.modal-content::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
-.modal-content::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
-.modal-content::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-
-/* --- MODAL DE ÉXITO (CORRECCIÓN BLINDADA) --- */
-#modal-exito {
-  display: none; /* Oculto por defecto */
-  position: fixed; /* Lo despega de la web y lo hace flotar */
-  z-index: 9999; /* Asegura que salga por encima de absolutamente todo */
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(15, 32, 39, 0.85); /* Fondo oscuro semitransparente */
-  align-items: center;
-  justify-content: center;
-}
-
-/* Cuando el Javascript le añade 'activo', cambia a display flex y se muestra */
-#modal-exito.activo {
-  display: flex; 
-}
-
-.modal-exito-contenido {
-  background-color: var(--color-blanco);
-  position: relative; /* CLAVE para que la X entienda dónde está la esquina */
+footer {
+  background-color: var(--color-blanco); /* Un gris oscuro/antracita muy limpio para cerrar */
+  color: var(--color-isabial-gris);
   text-align: center;
-  max-width: 450px;
-  width: 90%; /* Para que en móviles no se pegue a los bordes */
-  padding: 3rem 2rem;
-  border-radius: 16px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  padding: 2rem 2rem;
+  margin-top: 5rem;
 }
 
-/* La cruz de cerrar */
-#cerrar-exito {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 1.8rem;
-  color: #64748b;
-  cursor: pointer;
+footer p {
+  margin: 0;
+  opacity: 0.9; /* Un pelín de transparencia para que el texto sea elegante */
+}
+
+/* Estilo para el enlace del footer */
+footer a {
+  color: var(--color-isabial-primario);
+  text-decoration: underline; 
   font-weight: bold;
-  line-height: 1;
+  display: inline-block; /* CLAVE: Necesario para que la transformación de tamaño funcione correctamente */
+  transition: transform 0.2s ease; /* Transición suave solo para la expansión */
 }
 
-#cerrar-exito:hover {
-  color: var(--color-isabial-dark);
+/* El hover idéntico al del nav: se expande un pelín sin cambiar de color */
+footer a:hover {
+  transform: scale(1.05);
 }
-
-/* Contenido del modal */
-.icono-exito {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1.5rem;
-}
-
-.icono-exito svg {
-  width: 65px;
-  height: 65px;
-  color: var(--color-simia-primary); 
-}
-
-.modal-exito-contenido h3 {
-  font-size: 1.6rem;
-  color: var(--color-isabial-dark);
-  margin-bottom: 0.5rem;
-}
-
-.modal-exito-contenido p {
-  color: #64748b;
-  margin-bottom: 2rem;
-}
-
-#btn-entendido {
-  width: 100%;
-}
-
 /* ==========================================================================
    6. RESPONSIVE DESIGN (MÓVILES Y TABLETS)
    ========================================================================== */
