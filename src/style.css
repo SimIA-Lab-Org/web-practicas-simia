@@ -727,6 +727,7 @@ h1, h2, h3 {
 /* La caja azul que solo envuelve el contenido interior */
 .contenedor-practicas {
   background-color: var(--color-isabial-primario); 
+  margin-top: 3rem;
   padding: 5rem 2rem; 
   border-radius: 20px; 
 }
