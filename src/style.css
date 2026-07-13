@@ -8,9 +8,11 @@
   --color-isabial-primario: #567CA8; /* Azul base oficial */
   --color-isabial-gris: #8C8C8B;     /* Gris oficial */
   --color-isabial-rojo: #C81530;     /* Rojo oficial */
-  --color-isabial-verde: #a9ce7e;    /* Verde oficial */
+  --color-isabial-verde: #78C2A6;    /* Verde oficial */
   --color-negro: #000000;            /* Negro */
   --color-blanco: #ffffff;           /* Blanco */
+  --color-azul-claro: #EDF3F9;
+  --color-gris-oscuro: #5a5a5a;
 
   /* Configuración de tus tipografías originales */
   --fuente-titulos: 'Verdana', sans-serif;
@@ -35,7 +37,7 @@ html {
 body {
   font-family: var(--fuente-principal);
   background-color: var(--color-blanco);
-  color: var(--color-negro);
+  color: var(--color-gris-oscuro);
   line-height: 1.6;
 }
 
@@ -170,7 +172,7 @@ h1, h2, h3 {
 .nav-links a {
   color: var(--color-isabial-primario);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: bold;
   display: inline-block; /* Necesario para que el transform funcione en enlaces inline */
   transition: transform 0.2s;
 }
@@ -310,9 +312,20 @@ h1, h2, h3 {
 .banner-app {
   background-color: var(--color-blanco);
   padding: 2.5rem 2rem;
+  margin-top: -110px;
+  margin-bottom: 160px;
+  margin-left: 250px;
+  margin-right: 250px;
   box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.15);
   position: relative;
   z-index: 5;
+  border-left: var(--color-isabial-primario);
+
+  /* BORDE GENERAL: Un borde azul corporativo sutil con transparencia */
+  border: 1px solid color-mix(in srgb, var(--color-isabial-primario), transparent 70%) !important;
+  
+  /* MARCA LATERAL: Un listón grueso en rojo corporativo a la izquierda para destacar el bloque oficial */
+  border-left: 6px solid var(--color-isabial-rojo) !important;
 }
 
 .banner-app-content {
@@ -335,7 +348,7 @@ h1, h2, h3 {
 
 .badge-proximamente {
   font-size: 0.75rem;
-  background-color: #f59e0b; /* Naranja llamativo */
+  background-color: var(--color-isabial-rojo);
   color: var(--color-blanco);
   padding: 0.2rem 0.6rem;
   border-radius: 20px;
@@ -344,7 +357,7 @@ h1, h2, h3 {
 }
 
 .app-texto p {
-  color: var(--color-negro);
+  color: var(--color-gris-oscuro);
   font-size: 1rem;
   margin: 0;
   line-height: 1.5;
@@ -401,7 +414,6 @@ h1, h2, h3 {
   padding: 1rem 2rem;
   border-radius: 50px;
   font-weight: bold;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   z-index: 10000;
   opacity: 0;
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
@@ -421,10 +433,6 @@ h1, h2, h3 {
   width: 45px;          /* Ajusta al tamaño que mejor quede con tu H3 */
   height: 45px;
   border-radius: 12px;  /* Esquinas redondeadas estilo iOS/Android */
-  
-  /* Aquí está la magia de la sombra */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25), 
-              0 2px 4px rgba(196, 8, 8, 0.1);
   
   /* Transición por si en el futuro quieres que reaccione al pasar el ratón */
   transition: transform 0.2s ease;
@@ -494,8 +502,7 @@ h1, h2, h3 {
 .tarjeta-hacer {
   border-radius: 16px;
   background-color: var(--color-blanco);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease;
   position: relative; /* CLAVE: Para que la foto se mueva dentro de la tarjeta */
   display: flex;
   justify-content: flex-end; /* Por defecto, empujamos el texto hacia la derecha */
@@ -509,7 +516,6 @@ h1, h2, h3 {
 
 .tarjeta-hacer:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
 }
 
 /* 2. LA FOTO: Absoluta. Se acopla al espacio sin dictar la altura de la tarjeta */
@@ -549,7 +555,7 @@ h1, h2, h3 {
 
 .tarjeta-hacer p {
   font-size: 1.1rem;
-  color: var(--color-negro);
+  color: var(--color-gris-oscuro);
   line-height: 1.7;
 }
 
@@ -645,7 +651,7 @@ h1, h2, h3 {
 
 /* Centramos el subtítulo rojo y le damos su espacio antes de las tarjetas */
 .proyectos-seccion .subtitulo-centrado {
-  color: var(--color-isabial-rojo) !important; 
+  color: var(--color-gris-oscuro) !important; 
   text-align: center;
   font-size: 1.15rem;
   margin-top: 0;
@@ -660,9 +666,7 @@ h1, h2, h3 {
 
 .tarjeta-galeria {
   background-color: var(--color-blanco);
-  border-radius: 16px;
   overflow: hidden; /* Esto asegura que la imagen respete las esquinas redondeadas */
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2); /* Mismo sombreado inicial */  display: flex;
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -670,7 +674,6 @@ h1, h2, h3 {
 
 .tarjeta-galeria:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
 }
 
 .img-galeria {
@@ -711,9 +714,13 @@ h1, h2, h3 {
 
 .autor-proyecto {
   font-size: 0.85rem;
-  color: var(--color-isabial-gris);
+  color: var(--color-gris-oscuro);
   font-style: italic; /* En cursiva y un poco más pequeña */
   display: block;
+}
+
+.simia-suite {
+  margin-top: 5px;
 }
 
 /* =========================================================
@@ -757,7 +764,7 @@ h1, h2, h3 {
   background-color: var(--color-isabial-primario); 
   margin-top: 3rem;
   padding: 5rem 2rem; 
-  border-radius: 20px; 
+  border-radius: 6px; 
 }
 
 .grid-perfiles { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -773,40 +780,40 @@ h1, h2, h3 {
 /* Alertas UI */
 .alerta-entrevista {
   background-color: rgba(255, 255, 255, 0.1);
-  border-left: 4px solid #fbbf24;
+  border-left: 4px solid var(--color-isabial-verde);
   color: var(--color-blanco);
   padding: 1rem 1.5rem;
   margin-bottom: 3rem;
   border-radius: 4px;
 }
 .alerta-info {
-  background-color: #e0f2fe;
+  background-color: var(--color-azul-claro);
   border-left: 4px solid var(--color-isabial-primario);
   padding: 1rem;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
-  color: #0c4a6e;
+  color: var(--color-isabial-primario);
   border-radius: 0 8px 8px 0;
 }
 .alerta-master {
-  background-color: #e0f2fe;
+  background-color: var(--color-azul-claro);
   border-left: 4px solid var(--color-isabial-primario);
   padding: 1rem;
   margin: 1.5rem 0;
   font-size: 0.9rem;
-  color: #475569;
+  color: var(--color-isabial-primario);
 }
 
 /* Formulario */
 .explicacion-boton {
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
-  color: #475569;
+  color: var(--color-isabial-gris);
   text-align: center;
   background-color: var(--color-blanco);
   padding: 1rem;
   border-radius: 8px;
-  border: 1px dashed #cbd5e1;
+  border: 1px dashed var(--color-isabial-gris);
 }
 
 .formulario-grado { display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem; }
@@ -933,11 +940,16 @@ footer p {
   opacity: 0.9; /* Un pelín de transparencia para que el texto sea elegante */
 }
 
+/* Nueva clase para separar la dirección y hacerla sutil */
+.footer-direccion {
+  margin-top: 0.5rem; /* Separación respecto a la línea de arriba */
+  font-size: 0.85rem; /* Un tamaño un poquito más pequeño */
+}
+
 /* Estilo para el enlace del footer */
 footer a {
   color: var(--color-isabial-primario);
   text-decoration: underline; 
-  font-weight: bold;
   display: inline-block; /* CLAVE: Necesario para que la transformación de tamaño funcione correctamente */
   transition: transform 0.2s ease; /* Transición suave solo para la expansión */
 }
@@ -945,6 +957,22 @@ footer a {
 /* El hover idéntico al del nav: se expande un pelín sin cambiar de color */
 footer a:hover {
   transform: scale(1.05);
+}
+
+/* ==========================================================================
+   AJUSTE DE ESTILO PLANO CORPORATIVO (COMPROMISO CALIDAD)
+   ========================================================================== */
+
+/* 1. Quitamos todas las sombras y dejamos un redondeo muy leve (6px) */
+.tarjeta-hacer, .tarjeta-extra-publicacion, .tarjeta-perfil, .pildora-perfil, 
+.alerta-info, .alerta-master, .btn-primario, .btn-secundario, 
+.btn-primario-oscuro, .banner-app, .tarjeta-galeria {
+  box-shadow: none !important;     /* Fuera efecto 3D / sombras */
+  border-radius: 6px !important;   /* Redondeo casi imperceptible y muy elegante */
+}
+
+.tarjeta-hacer, .tarjeta-extra-publicacion, .tarjeta-galeria, .tarjeta-perfil {
+  border: 1px solid color-mix(in srgb, var(--color-isabial-primario), transparent 70%) !important;
 }
 
 /* ==========================================================================
@@ -1007,18 +1035,44 @@ footer a:hover {
   }
 
   /* --- 4. Banner SimIA Suite --- */
+  .banner-app {
+    /* Centrado automático */
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* 1. Mantiene el tamaño FIJO y quieto en PC (ajústalo si lo quieres más ancho o estrecho) */
+    max-width: 1000px; 
+    
+    /* 2. MAGIA: Solo cuando la pantalla baja de 1000px y se lo va a comer, 
+      empieza a encogerse manteniendo un margen de 2rem por cada lado */
+    width: calc(100% - 4rem);
+  }
+
   .banner-app-content {
     flex-direction: column;
     text-align: center;
-    padding: 2rem 1rem;
+    gap: 2rem; /* Separar el texto de los botones */
+    flex-wrap: wrap; /* MAGIA: Si la pantalla encoge mucho y los botones chocan con el texto, saltan solos a la línea de abajo sin salirse de la caja */
   }
+
   .app-botones {
     flex-direction: column;
     width: 100%;
+    gap: 1rem;
   }
+
   .btn-tienda {
-    width: 100%;
+    width: 100%; /* Botones a pantalla completa */
     justify-content: center; /* Centramos el icono de Apple/Google con el texto */
+    
+    /* Efecto de crecer al pulsar (como los demás) pero adaptado a móviles */
+    transition: transform 0.2s ease;
+  }
+  
+  /* En móviles, desactivar el hover loco de saltar hacia arriba para evitar toques fantasma */
+  .btn-tienda:hover {
+      transform: scale(1.02); /* Un crecimiento muy sutil en lugar de saltar */
+      box-shadow: none !important; /* Mantener el estilo plano corporativo */
   }
 
   /* --- 5. Qué Hacemos (Romper el Efecto Zig-Zag) --- */
@@ -1129,4 +1183,10 @@ footer a:hover {
   footer p, footer a {
     font-size: 1rem; /* Rebajamos un poco el tamaño extra que le dimos para PC */
   }
+
+  .toast-notificacion {
+    text-align: center;
+    width: 80%;
+  }
+
 }
