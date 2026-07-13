@@ -240,7 +240,7 @@ h1, h2, h3 {
 .hero {
   background: var(--color-isabial-primario);
   color: var(--color-blanco);
-  padding: 5rem 2rem 5.5rem 2rem; /* Un poco más de aire arriba por la navbar sticky */
+  padding: 4.5rem 2rem 5.5rem 2rem; /* Un poco más de aire arriba por la navbar sticky */
   text-align: center;
 }
 
@@ -1077,17 +1077,41 @@ footer a:hover {
   
   /* --- 3. Cabecera Inicial (Hero) --- */
   .hero {
-    padding: 8rem 1rem 3rem 1rem; /* Dejamos más espacio arriba para que el navbar no lo tape */
+    /* Antes tenía 8rem por arriba, lo bajamos a 5rem para quitar ese exceso de margen, 
+       pero dejando lo justo para que no lo tape la barra de navegación */
+    padding: 3rem 1rem 3rem 1rem; 
   }
+  
   h1 {
-    font-size: 2.2rem;
+    font-size: 1.8rem; /* Título principal más compacto (antes era 2.2rem) */
+    margin-bottom: 1rem; /* Separación justa con el texto de abajo */
   }
+  
+  .hero p {
+    font-size: 1.1rem; /* Mismo tamaño de fuente que el texto normal del resto de la web */
+    line-height: 1.5; /* Interlineado cómodo para leer en móvil */
+  }
+
+  .subtitulo {
+    font-size: 1.2em;
+  }
+  
   .hero-perfiles-container {
-    grid-template-columns: 1fr; /* Las 3 píldoras pasan de estar en fila a apilarse en 1 columna */
-    gap: 1rem;
+    grid-template-columns: 1fr; /* Apilamos las píldoras en 1 columna */
   }
+  
+  /* --- SOLUCIÓN PÍLDORAS --- */
   .pildora-perfil {
     width: 100%;
+    font-size: 0.95rem !important;   /* Forzamos la letra más pequeña */
+    justify-content: center;
+  }
+
+  /* Atacamos directamente al texto interno por si está dentro de etiquetas */
+  .pildora-perfil span, 
+  .pildora-perfil strong,
+  .pildora-perfil p {
+    font-size: 0.95rem !important; /* Mismo tamaño forzado */
   }
 
   /* --- 4. Banner SimIA Suite (MÓVILES) --- */
