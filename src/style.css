@@ -1197,8 +1197,10 @@ footer a:hover {
   }
   /* --- 6. Proyectos de Estudiantes --- */
   .proyectos-seccion {
-    padding: 4rem 1rem;
+    padding: 0.5rem 1rem;
+    scroll-margin-top: -15px;
   }
+
   .grid-galeria-proyectos {
     grid-template-columns: 1fr; /* De las cuadrículas de PC a una lista 1 a 1 hacia abajo */
     gap: 2rem;
