@@ -1153,6 +1153,11 @@ footer a:hover {
   }
 
   /* --- 5. Qué Hacemos (Romper el Efecto Zig-Zag) --- */
+
+  .que-hacemos {
+    scroll-margin-top: -100px;
+  }
+
   .grid-que-hacemos {
     gap: 2.5rem;
   }
@@ -1195,6 +1200,8 @@ footer a:hover {
     margin: 1.5rem auto 0 auto; /* Centramos el botón negro de la revista */
     display: block;
   }
+
+
   /* --- 6. Proyectos de Estudiantes --- */
   .proyectos-seccion {
     padding: 0.5rem 1rem;
@@ -1243,7 +1250,7 @@ footer a:hover {
   .cognivir-imagen {
     width: 100%;
     height: 250px; /* Igualamos con las otras fotos */
-  }
+  }  
 
   
 
@@ -1266,6 +1273,14 @@ footer a:hover {
   .toast-notificacion {
     text-align: center;
     width: 80%;
+  }
+
+
+  /* Resto botones */
+  .btn-youtube,
+  .btn-contacto,
+  .btn-primario {
+    width: 100% !important;
   }
 
 }
