@@ -1019,37 +1019,62 @@ footer a:hover {
   
   /* --- 2. Barra de Navegación (Navbar) --- */
   .navbar {
-    flex-direction: column; /* Apilamos logos, redes y links */
-    padding: 1rem;
-    gap: 1rem;
+    flex-direction: column; 
+    padding: 0.5rem 1rem; 
+    gap: 0.4rem;          
     height: auto;
   }
   .brand-logos {
     justify-content: center;
   }
   .logo-principal {
-    height: 35px; /* Un poco más compactos */
-  }
-  .nav-socials {
-    position: static; /* Quitamos el absolute para que se apilen con los demás elementos */
-    transform: none;  /* Eliminamos la traducción horizontal */
-    justify-content: center;
-    margin: 0.5rem 0;
-  }
-  .nav-links {
-    flex-direction: column; /* Menú en vertical */
-    width: 100%;
-    gap: 1rem;
-    text-align: center;
-  }
-  .nav-links li {
-    display: block;
-  }
-  .btn-contacto {
-    display: block;
-    width: 100%; /* Botón de contacto ocupa todo el ancho */
+    height: 28px; 
   }
 
+  /* --- REDES SOCIALES MÁS PEQUEÑAS --- */
+  .nav-socials {
+    position: static; 
+    transform: none;  
+    justify-content: center;
+    gap: 0.8rem; /* Separación simétrica entre ellos */
+    margin: 0.2rem 0;
+  }
+  .nav-socials a img, 
+  .nav-socials a svg, 
+  .nav-socials a i {
+    width: 20px !important;  /* Iconos más pequeñitos si son imágenes/svg */
+    height: 20px !important;
+    font-size: 1.1rem !important; /* Por si estás usando FontAwesome (iconos de texto) */
+  }
+
+  /* --- ENLACES MATEMÁTICAMENTE CENTRADOS --- */
+  .nav-links {
+    display: flex;       /* Usamos flexbox para repartir el espacio */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0.3rem 0;
+    padding: 0;
+  }
+  .nav-links li {
+    flex: 1; /* MAGIA CONTRA EL TOC: Los 3 enlaces miden exactamente lo mismo de ancho */
+    text-align: center; /* Centramos el texto dentro de su espacio */
+    margin: 0;
+  }
+  .nav-links a {
+    font-size: 0.85rem; /* Un pelín más pequeño para evitar que se aplasten */
+    display: inline-block;
+  }
+
+  /* --- BOTÓN DE CONTACTO --- */
+  .btn-contacto {
+    display: block;
+    width: 100%; 
+    padding: 0.5rem 1rem;  
+    text-align: center;
+    margin-top: 0.2rem;    
+  }
+  
   /* --- 3. Cabecera Inicial (Hero) --- */
   .hero {
     padding: 8rem 1rem 3rem 1rem; /* Dejamos más espacio arriba para que el navbar no lo tape */
