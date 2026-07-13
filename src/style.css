@@ -314,12 +314,17 @@ h1, h2, h3 {
   padding: 2.5rem 2rem;
   margin-top: -110px;
   margin-bottom: 160px;
-  margin-left: 250px;
-  margin-right: 250px;
+  
+  /* --- MAGIA RESPONSIVE INTERMEDIA --- */
+  width: calc(100% - 4rem); /* Ocupa la pantalla dejando siempre 2rem de respiro a cada lado */
+  max-width: 1360px;        /* Pero NUNCA pasará de 1000px en pantallas gigantes (imita tu margen de 250px) */
+  margin-left: auto;        /* Lo centra perfectamente */
+  margin-right: auto;       /* Lo centra perfectamente */
+  /* ----------------------------------- */
+
   box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.15);
   position: relative;
   z-index: 5;
-  border-left: var(--color-isabial-primario);
 
   /* BORDE GENERAL: Un borde azul corporativo sutil con transparencia */
   border: 1px solid color-mix(in srgb, var(--color-isabial-primario), transparent 70%) !important;
@@ -334,26 +339,57 @@ h1, h2, h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 3rem;
+  gap: 2rem; /* Reduzco un poco el gap para que aguanten más tiempo en la misma línea */
+  
+  /* CLAVE: Evitamos que salten a la línea de abajo */
+  flex-wrap: nowrap; 
+}
+
+/* Le decimos al contenedor del texto que puede encogerse si le falta espacio, 
+   pero que intente ocupar todo lo que pueda */
+.app-texto {
+  flex: 1 1 auto;
+  min-width: 0; /* Necesario para que el flexbox no se bloquee con textos largos */
+}
+
+/* Le decimos a la caja de los botones que mantenga su tamaño sí o sí 
+   (no se encoge ni crece, se queda rígida a la derecha) */
+.app-botones {
+  display: flex;
+  gap: 1rem;
+  flex: 0 0 auto; /* No encoge, no crece, tamaño rígido */
 }
 
 .app-texto h3 {
   font-size: 1.5rem;
-  color: var(--color-negro);
-  margin-bottom: 0.5rem;
+  color: var(--color-negro) !important;
+  margin-bottom: 1.2rem;
+  
+  /* Volvemos al flex normal para que LOGO y TEXTO sigan de la mano */
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem; /* Separación entre logo y texto */
+  
+  /* TRUCO: Le hacemos un "hueco" por arriba al título para que quepa la etiqueta */
+  position: relative;
+  padding-top: 2rem; 
 }
 
 .badge-proximamente {
   font-size: 0.75rem;
   background-color: var(--color-isabial-rojo);
   color: var(--color-blanco);
-  padding: 0.2rem 0.6rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  line-height: 1;
+  white-space: nowrap;
+  
+  /* Desenganchamos la etiqueta y la clavamos en el hueco que hemos creado arriba */
+  position: absolute;
+  top: 0;
+  left: 0; 
 }
 
 .app-texto p {
@@ -361,12 +397,6 @@ h1, h2, h3 {
   font-size: 1rem;
   margin: 0;
   line-height: 1.5;
-}
-
-.app-botones {
-  display: flex;
-  gap: 1rem;
-  flex-shrink: 0;
 }
 
 .btn-tienda {
@@ -966,7 +996,7 @@ footer a:hover {
 /* 1. Quitamos todas las sombras y dejamos un redondeo muy leve (6px) */
 .tarjeta-hacer, .tarjeta-extra-publicacion, .tarjeta-perfil, .pildora-perfil, 
 .alerta-info, .alerta-master, .btn-primario, .btn-secundario, 
-.btn-primario-oscuro, .banner-app, .tarjeta-galeria {
+.btn-primario-oscuro, .banner-app, .btn-tienda, .tarjeta-galeria {
   box-shadow: none !important;     /* Fuera efecto 3D / sombras */
   border-radius: 6px !important;   /* Redondeo casi imperceptible y muy elegante */
 }
@@ -1034,45 +1064,41 @@ footer a:hover {
     width: 100%;
   }
 
-  /* --- 4. Banner SimIA Suite --- */
-  .banner-app {
-    /* Centrado automático */
-    margin-left: auto;
-    margin-right: auto;
-    
-    /* 1. Mantiene el tamaño FIJO y quieto en PC (ajústalo si lo quieres más ancho o estrecho) */
-    max-width: 1000px; 
-    
-    /* 2. MAGIA: Solo cuando la pantalla baja de 1000px y se lo va a comer, 
-      empieza a encogerse manteniendo un margen de 2rem por cada lado */
-    width: calc(100% - 4rem);
-  }
-
+  /* --- 4. Banner SimIA Suite (MÓVILES) --- */
+  
   .banner-app-content {
     flex-direction: column;
-    text-align: center;
-    gap: 2rem; /* Separar el texto de los botones */
-    flex-wrap: wrap; /* MAGIA: Si la pantalla encoge mucho y los botones chocan con el texto, saltan solos a la línea de abajo sin salirse de la caja */
+    text-align: center; /* Centramos el texto general */
+    gap: 1.5rem;
+    width: 100%;
   }
 
+  /* --- Ajustes del título y etiqueta para MÓVILES --- */
+  .app-texto h3 {
+    justify-content: center; /* Centra el logo y el título juntos en la misma línea */
+    text-align: center;
+  }
+
+  .badge-proximamente {
+    /* Como la etiqueta está "flotando", esto la centra matemáticamente en el medio */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .app-texto p {
+    text-align: center; /* Aseguramos que el párrafo descriptivo quede bien centrado */
+  }
+
+  /* Los botones apilados como pedías */
   .app-botones {
     flex-direction: column;
-    width: 100%;
     gap: 1rem;
+    width: 100%;
   }
 
   .btn-tienda {
     width: 100%; /* Botones a pantalla completa */
-    justify-content: center; /* Centramos el icono de Apple/Google con el texto */
-    
-    /* Efecto de crecer al pulsar (como los demás) pero adaptado a móviles */
-    transition: transform 0.2s ease;
-  }
-  
-  /* En móviles, desactivar el hover loco de saltar hacia arriba para evitar toques fantasma */
-  .btn-tienda:hover {
-      transform: scale(1.02); /* Un crecimiento muy sutil en lugar de saltar */
-      box-shadow: none !important; /* Mantener el estilo plano corporativo */
+    justify-content: center; /* Centramos el icono con el texto */
   }
 
   /* --- 5. Qué Hacemos (Romper el Efecto Zig-Zag) --- */
