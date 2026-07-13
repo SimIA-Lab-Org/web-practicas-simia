@@ -1117,6 +1117,10 @@ footer a:hover {
 
   /* --- 4. Banner SimIA Suite (MÓVILES) --- */
   
+  .banner-app {
+    margin-top: -72px;
+  }
+  
   .banner-app-content {
     flex-direction: column;
     text-align: center; /* Centramos el texto general */
@@ -1153,7 +1157,6 @@ footer a:hover {
   }
 
   /* --- 5. Qué Hacemos (Romper el Efecto Zig-Zag) --- */
-
   .que-hacemos {
     scroll-margin-top: -100px;
   }
