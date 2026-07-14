@@ -311,35 +311,34 @@ h1, h2, h3 {
    ========================================================================== */
 .banner-app {
   background-color: var(--color-blanco);
+  margin-top: 3em;
   padding: 2.5rem 2rem;
-  margin-top: -110px;
-  margin-bottom: 160px;
   
-  /* --- MAGIA RESPONSIVE INTERMEDIA --- */
-  width: calc(100% - 4rem); /* Ocupa la pantalla dejando siempre 2rem de respiro a cada lado */
-  max-width: 1360px;        /* Pero NUNCA pasará de 1000px en pantallas gigantes (imita tu margen de 250px) */
-  margin-left: auto;        /* Lo centra perfectamente */
-  margin-right: auto;       /* Lo centra perfectamente */
-  /* ----------------------------------- */
+  /* --- ALINEACIÓN MILIMÉTRICA CON PROYECTOS --- */
+  width: 100%;            /* Toma todo el ancho que le deja la sección de proyectos */
+  max-width: none;        /* Quitamos topes, porque el padre ya lo frena exacto en los 1200px */
+  box-sizing: border-box; /* Obliga a que los bordes cuenten dentro del tamaño */
+  margin-left: 0;         /* Quitamos centrado automático, no hace falta */
+  margin-right: 0;        
+  /* ------------------------------------------- */
 
-  box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.15);
   position: relative;
   z-index: 5;
 
-  /* BORDE GENERAL: Un borde azul corporativo sutil con transparencia */
+  /* BORDE GENERAL */
   border: 1px solid color-mix(in srgb, var(--color-isabial-primario), transparent 70%) !important;
   
-  /* MARCA LATERAL: Un listón grueso en rojo corporativo a la izquierda para destacar el bloque oficial */
+  /* MARCA LATERAL */
   border-left: 6px solid var(--color-isabial-rojo) !important;
 }
 
 .banner-app-content {
-  max-width: 1200px;
+  width: 100%; /* Como el padre ya lo limita a 1200px, el contenido simplemente ocupa el espacio interior */
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem; /* Reduzco un poco el gap para que aguanten más tiempo en la misma línea */
+  gap: 2rem; 
   
   /* CLAVE: Evitamos que salten a la línea de abajo */
   flex-wrap: nowrap; 
@@ -1119,7 +1118,13 @@ footer a:hover {
   /* --- 4. Banner SimIA Suite (MÓVILES) --- */
   
   .banner-app {
-    margin-top: -72px;
+    margin-top: 33px;
+    /* --- ALINEACIÓN PERFECTA EN MÓVIL --- */
+    width: 100%;      /* De nuevo, ocupa exactamente el 100% del hueco de los proyectos */
+    margin-left: 0;
+    margin-right: 0;
+    padding: 1.5rem 1rem;
+    /* ------------------------------------ */
   }
   
   .banner-app-content {
